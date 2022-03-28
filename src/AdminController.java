@@ -39,8 +39,8 @@ public class AdminController {
     void handleLoginCancel(ActionEvent event) throws IOException {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("fxml/customer_view.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
+            stage       = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene       = new Scene(root);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -52,9 +52,9 @@ public class AdminController {
     void handleLoginSubmit(ActionEvent event) throws IOException {
         try {
 
-            adminList = Observer.getObservableAdminList();
+            adminList       = Observer.getObservableAdminList();
 
-            String email = inputEmail.getText();
+            String email    = inputEmail.getText();
             String password = inputPassword.getText();
 
             for(Admin a : adminList) {
@@ -62,13 +62,13 @@ public class AdminController {
                     output.setTextFill(Color.BLACK);
                     output.setText("");
                     Parent root = FXMLLoader.load(getClass().getResource("fxml/dashboard.fxml"));
-                    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                    scene = new Scene(root);
+                    stage       = (Stage)((Node)event.getSource()).getScene().getWindow();
+                    scene       = new Scene(root);
                     stage.setScene(scene);
                     stage.show();
                 } else {
                     output.setTextFill(Color.RED);
-                    output.setText("Invalid Login Credential!");
+                    output.setText("Invalid Login Credentials!");
                 }
             }
 
@@ -109,8 +109,8 @@ public class AdminController {
     void handleLogout(ActionEvent event) throws IOException {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("fxml/customer_view.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
+            stage       = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene       = new Scene(root);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -122,8 +122,8 @@ public class AdminController {
     void openOrdersPage(ActionEvent event) throws IOException {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("fxml/orders.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
+            stage       = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene       = new Scene(root);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -135,8 +135,8 @@ public class AdminController {
     void openDashboardPage(ActionEvent event) throws IOException {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("fxml/dashboard.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
+            stage       = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene       = new Scene(root);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {

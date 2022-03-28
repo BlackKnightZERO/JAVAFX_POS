@@ -31,6 +31,7 @@ public class Controller implements Initializable {
 
     @FXML
     private TableView<Item> tbData;
+
     @FXML
     public TableColumn<Item, String> item;
 
@@ -47,8 +48,8 @@ public class Controller implements Initializable {
     void openLoginPage(ActionEvent event) throws IOException {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("fxml/login.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
+            stage       = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene       = new Scene(root);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -62,7 +63,7 @@ public class Controller implements Initializable {
         
         if(singleItem.size() > 0) {
 
-            orderItem = singleItem.get(0);
+            orderItem   = singleItem.get(0);
             Order order = new Order(orderItem);
             Observer.setObservableOrderList(order);
 
@@ -87,8 +88,8 @@ public class Controller implements Initializable {
     void openOrderPage(ActionEvent event) throws IOException {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("fxml/customer_view.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
+            stage       = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene       = new Scene(root);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
