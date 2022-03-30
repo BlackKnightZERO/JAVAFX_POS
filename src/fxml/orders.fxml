@@ -19,7 +19,12 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#openOrdersPage" text="Orders">
+            <Button mnemonicParsing="false" onAction="#openInventoryPage" text=" Inventory ">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#openOrdersPage" text="   Orders   ">
                <font>
                   <Font size="18.0" />
                </font>

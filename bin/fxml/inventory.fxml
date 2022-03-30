@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -48,18 +49,29 @@
             </Label>
          </children>
       </HBox>
-      <Label layoutX="141.0" layoutY="104.0" text="Today's Orders">
+      <TableView layoutX="309.0" layoutY="86.0" prefHeight="315.0" prefWidth="290.0">
+        <columns>
+          <TableColumn prefWidth="106.4000244140625" text="Item" />
+          <TableColumn prefWidth="85.5999755859375" text="Category" />
+            <TableColumn prefWidth="95.20001220703125" text="Price" />
+        </columns>
+      </TableView>
+      <TextField fx:id="inputName" layoutX="139.0" layoutY="164.0" prefHeight="26.0" prefWidth="160.0" />
+      <TextField fx:id="inputCategory" layoutX="139.0" layoutY="223.0" prefHeight="26.0" prefWidth="160.0" />
+      <TextField fx:id="inputPrice" layoutX="139.0" layoutY="282.0" prefHeight="26.0" prefWidth="160.0" />
+      <Label layoutX="141.0" layoutY="109.0" text="Add Item">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TableView fx:id="tbData" layoutX="135.0" layoutY="136.0" prefHeight="263.0" prefWidth="458.0">
-        <columns>
-          <TableColumn fx:id="time" prefWidth="108.0" text="Time" />
-          <TableColumn fx:id="item" prefWidth="103.20001220703125" text="Item" />
-            <TableColumn fx:id="category" prefWidth="116.79998779296875" text="Category" />
-            <TableColumn fx:id="price" prefWidth="116.0" text="Price" />
-        </columns>
-      </TableView>
+      <Label layoutX="140.0" layoutY="142.0" text="Name" />
+      <Label layoutX="139.0" layoutY="201.0" text="Category" />
+      <Label layoutX="139.0" layoutY="260.0" text="Price" />
+      <Button layoutX="140.0" layoutY="327.0" mnemonicParsing="false" onAction="#handleAddItem" prefHeight="26.0" prefWidth="98.0" text="Add" />
+      <Button layoutX="248.0" layoutY="327.0" mnemonicParsing="false" onAction="#handleDeleteItem" text="Delete" />
+      <Label fx:id="errorName" layoutX="189.0" layoutY="142.0" />
+      <Label fx:id="errorPrice" layoutX="175.0" layoutY="260.0" />
+      <Label fx:id="inventoryMsg" layoutX="204.0" layoutY="368.0" />
+      <Label fx:id="errorCategory" layoutX="204.0" layoutY="201.0" />
    </children>
 </AnchorPane>

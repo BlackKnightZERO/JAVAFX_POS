@@ -72,7 +72,7 @@ public class Controller implements Initializable {
             message.setTextFill(Color.BLUE);
 
             try {
-                Observer.updateOrderList();
+                Observer.updateObservableOrderList();
             } catch (IOException e) {
                 e.printStackTrace();
             }

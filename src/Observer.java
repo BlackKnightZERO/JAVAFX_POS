@@ -68,7 +68,7 @@ public class Observer {
 
     }
 
-    public static void updateOrderList() throws IOException{
+    public static void updateObservableOrderList() throws IOException{
         
         String filename = "storage/orders/"+LocalDate.now()+".txt";
         BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
@@ -83,6 +83,34 @@ public class Observer {
             writer.close();
         }
         
+    }
+
+    public static ObservableList<Item> getObservableOrderList() throws IOException{
+
+        String filename = "storage/orders/"+LocalDate.now()+".txt";
+
+        ObservableList<Item> observeOrders = FXCollections.observableArrayList();
+        
+        BufferedReader reader = new BufferedReader(new FileReader(filename));
+
+        String singleLine;
+
+        try {
+            while( (singleLine = reader.readLine()) != null ) {
+                String [] parses = singleLine.split("#");
+                Item item = new Item(parses[1], parses[2], Double.parseDouble(parses[3]));
+                observeOrders.add(item);
+            }
+        } catch(IOException ioe){
+            ioe.printStackTrace();
+        } finally {
+            if(reader.readLine() == null) {
+                reader.close();
+            }
+        }
+        
+        return observeOrders;
+
     }
 
 }
