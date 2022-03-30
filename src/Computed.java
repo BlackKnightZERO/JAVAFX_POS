@@ -8,7 +8,6 @@ public class Computed {
     private static ObservableList<Item> itemList;
 
     public static String getTotalIncome(){
-        String result = "$";
         double total = 0;
         try {
             orderList = Observer.getObservableOrderList();
@@ -20,7 +19,7 @@ public class Computed {
             e.printStackTrace();
         }
 
-        return result+total;
+        return String.format("$%.1f",total);
     }
 
     public static String getTotalOrders(){

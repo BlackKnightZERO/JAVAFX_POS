@@ -71,17 +71,23 @@ public class Observer {
     public static void updateObservableOrderList() throws IOException{
         
         String filename = "storage/orders/"+LocalDate.now()+".txt";
-        BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
 
         try {
-            for(Order order : observeOrder) {
-                writer.write(order.generateString()+"\n");
+            File file = new File(filename);
+            if(!file.exists()){
+                file.createNewFile();
             }
+            FileWriter fw       = new FileWriter(file,true);
+            BufferedWriter bw   = new BufferedWriter(fw);
+            PrintWriter pw      = new PrintWriter(bw);
+
+            for(Order order : observeOrder) {
+                pw.println(order.generateString());
+            }
+            pw.close();
         } catch(IOException ioe) {
             ioe.printStackTrace();
-        } finally {
-            writer.close();
-        }
+        } 
         
     }
 
@@ -112,5 +118,25 @@ public class Observer {
         return observeOrders;
 
     }
+
+
+
+    // // old code - overwrite problem
+    // public static void updateObservableOrderList() throws IOException{
+        
+    //     String filename = "storage/orders/"+LocalDate.now()+".txt";
+    //     BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
+
+    //     try {
+    //         for(Order order : observeOrder) {
+    //             writer.write(order.generateString()+"\n");
+    //         }
+    //     } catch(IOException ioe) {
+    //         ioe.printStackTrace();
+    //     } finally {
+    //         writer.close();
+    //     }
+        
+    // }
 
 }
