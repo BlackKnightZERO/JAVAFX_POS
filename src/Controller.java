@@ -45,6 +45,9 @@ public class Controller implements Initializable {
     private Label message;
 
     @FXML
+    private Label currentOrderId;
+
+    @FXML
     void openLoginPage(ActionEvent event) throws IOException {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("fxml/login.fxml"));
@@ -59,6 +62,7 @@ public class Controller implements Initializable {
 
     @FXML
     void placeOrder(ActionEvent event) throws IOException {
+        
         ObservableList<Item> singleItem = tbData.getSelectionModel().getSelectedItems();
         
         if(singleItem.size() > 0) {
@@ -67,7 +71,6 @@ public class Controller implements Initializable {
             Order order = new Order(orderItem);
             Observer.setObservableOrderList(order);
 
-            System.out.println (order.generateString());
             message.setText("Order Placed, Thank You !");
             message.setTextFill(Color.BLUE);
 
@@ -97,6 +100,26 @@ public class Controller implements Initializable {
         }
     }
 
+    @FXML
+    void openHomePage(ActionEvent event) throws IOException {
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/customer_view.fxml"));
+            Parent root = loader.load();
+
+            Controller Controller = loader.getController();
+            Controller.displayCurrentOrder();
+
+            stage       = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene       = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     // private ObservableList<Item> itemList = FXCollections.observableArrayList(
             // new Item("COFFEE", "Baverage", 1.69),
             // new Item("TEA", "Baverage", 1.88)
@@ -114,6 +137,10 @@ public class Controller implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void displayCurrentOrder() {
+        currentOrderId.setText("");
     }
 
 }

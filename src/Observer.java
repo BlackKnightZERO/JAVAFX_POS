@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 public class Observer {
 
-    public static ObservableList<Order> observeOrder = FXCollections.observableArrayList();
+    public static Order currentOrder;
 
     public static ObservableList<Item> getObservableItemList() throws IOException{
 
@@ -61,10 +61,9 @@ public class Observer {
 
     public static void setObservableOrderList(Order order) {
 
-        if(!observeOrder.contains(order)){
-            observeOrder.add(order);
-            System.out.println("Added");
-        }
+        currentOrder = order;
+        System.out.println("Added");
+        System.out.println("Current Order: "+currentOrder.generateString());
 
     }
 
@@ -73,18 +72,21 @@ public class Observer {
         String filename = "storage/orders/"+LocalDate.now()+".txt";
 
         try {
+
             File file = new File(filename);
+
             if(!file.exists()){
                 file.createNewFile();
             }
+
             FileWriter fw       = new FileWriter(file,true);
             BufferedWriter bw   = new BufferedWriter(fw);
             PrintWriter pw      = new PrintWriter(bw);
 
-            for(Order order : observeOrder) {
-                pw.println(order.generateString());
-            }
+            pw.println(currentOrder.generateString());    
+
             pw.close();
+
         } catch(IOException ioe) {
             ioe.printStackTrace();
         } 
