@@ -19,7 +19,7 @@ public class ThankyouController {
     private Label currentOrderId;
 
     @FXML
-    void openHomePage(ActionEvent event) {
+    void openHomePage(ActionEvent event) throws IOException {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("fxml/customer_view.fxml"));
             stage       = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -32,7 +32,7 @@ public class ThankyouController {
     }
 
     @FXML
-    void openLoginPage(ActionEvent event) {
+    void openLoginPage(ActionEvent event) throws IOException {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("fxml/login.fxml"));
             stage       = (Stage)((Node)event.getSource()).getScene().getWindow();

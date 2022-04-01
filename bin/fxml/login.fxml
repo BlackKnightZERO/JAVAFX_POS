@@ -7,30 +7,28 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="475.0" style="-fx-background-color: lightsteelblue;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="475.0" style="-fx-background-color: lightsteelblue;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginController">
    <children>
       <Label layoutX="214.0" layoutY="51.0" text="Login">
          <font>
             <Font name="System Bold" size="23.0" />
          </font>
       </Label>
-      <Label layoutX="120.0" layoutY="120.0" prefHeight="20.0" prefWidth="33.0" text="Email">
+      <Label layoutX="52.0" layoutY="120.0" prefHeight="20.0" prefWidth="102.0" text="Email/Username">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="inputEmail" layoutX="170.0" layoutY="117.0" />
+      <TextField fx:id="inputEmailorUsername" layoutX="170.0" layoutY="117.0" />
       <Button layoutX="203.0" layoutY="249.0" mnemonicParsing="false" onAction="#handleLoginSubmit" prefHeight="30.0" prefWidth="83.0" text="Submit">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Label fx:id="errorEmail" layoutX="333.0" layoutY="121.0" prefHeight="18.0" prefWidth="127.0" />
       <Label layoutX="96.0" layoutY="157.0" text="Password">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="errorPassword" layoutX="333.0" layoutY="158.0" prefHeight="18.0" prefWidth="127.0" />
       <Label fx:id="output" alignment="CENTER" layoutX="155.0" layoutY="316.0" prefHeight="18.0" prefWidth="164.0" />
       <PasswordField fx:id="inputPassword" layoutX="170.0" layoutY="154.0" />
       <Button layoutX="397.0" layoutY="356.0" mnemonicParsing="false" onAction="#handleLoginCancel" text="cancel">

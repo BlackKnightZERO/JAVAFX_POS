@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightgray;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightgray;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DashboardController">
    <children>
       <VBox alignment="TOP_CENTER" layoutY="86.0" prefHeight="315.0" prefWidth="126.0" style="-fx-background-color: indigo;">
          <children>
@@ -50,12 +50,12 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="62.0" layoutX="146.0" layoutY="119.0" stroke="BLACK" strokeType="INSIDE" width="136.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="62.0" layoutX="297.0" layoutY="119.0" stroke="BLACK" strokeType="INSIDE" width="136.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="62.0" layoutX="447.0" layoutY="118.0" stroke="BLACK" strokeType="INSIDE" width="136.0" />
-      <Label layoutX="158.0" layoutY="140.0" text="Income">
+      <Label layoutX="159.0" layoutY="140.0" text="Income">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="312.0" layoutY="140.0" text="Orders">
+      <Label layoutX="313.0" layoutY="140.0" text="Orders">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -65,12 +65,12 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="incomeId" layoutX="222.0" layoutY="136.0" text="\$500">
+      <Label fx:id="incomeId" layoutX="219.0" layoutY="136.0" text="\$500">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="orderId" layoutX="380.0" layoutY="136.0" text="100">
+      <Label fx:id="orderId" layoutX="379.0" layoutY="136.0" text="100">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
