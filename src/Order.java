@@ -28,6 +28,10 @@ public class Order {
         return this.getOrderTimeStamp()+"#"+item.getName()+"#"+item.getCategory()+"#"+item.getPrice();
     }
 
+    public String displayOrderFormat1() {
+        return item.getName()+"("+item.getCategory()+") "+String.format("$%.2f",item.getPrice());
+    }
+
     @Override
     public String toString() {
         return "Order [item=" + item + ", orderTimeStamp=" + orderTimeStamp + "]";

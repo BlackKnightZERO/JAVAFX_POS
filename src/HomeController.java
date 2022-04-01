@@ -20,9 +20,8 @@ import javafx.stage.Stage;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 
-
-public class Controller implements Initializable {
-
+public class HomeController implements Initializable {
+    
     private ObservableList<Item> itemList;
     private Item orderItem;
 
@@ -43,9 +42,6 @@ public class Controller implements Initializable {
 
     @FXML
     private Label message;
-
-    @FXML
-    private Label currentOrderId;
 
     @FXML
     void openLoginPage(ActionEvent event) throws IOException {
@@ -75,7 +71,20 @@ public class Controller implements Initializable {
             message.setTextFill(Color.BLUE);
 
             try {
+
                 Observer.updateOrderList();
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/thank_you.fxml"));
+                Parent root = loader.load();
+                ThankyouController thankyouController = loader.getController();
+
+                thankyouController.displayCurrentOrder( order.displayOrderFormat1() );
+
+                stage       = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene       = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -86,44 +95,6 @@ public class Controller implements Initializable {
         }
 
     }
-
-    @FXML
-    void openOrderPage(ActionEvent event) throws IOException {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("fxml/customer_view.fxml"));
-            stage       = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene       = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    void openHomePage(ActionEvent event) throws IOException {
-        try {
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/customer_view.fxml"));
-            Parent root = loader.load();
-
-            Controller Controller = loader.getController();
-            Controller.displayCurrentOrder();
-
-            stage       = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene       = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    // private ObservableList<Item> itemList = FXCollections.observableArrayList(
-            // new Item("COFFEE", "Baverage", 1.69),
-            // new Item("TEA", "Baverage", 1.88)
-    // );
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -137,10 +108,6 @@ public class Controller implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public void displayCurrentOrder() {
-        currentOrderId.setText("");
     }
 
 }
