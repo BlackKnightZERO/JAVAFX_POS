@@ -19,7 +19,7 @@ public class Computed {
             e.printStackTrace();
         }
 
-        return String.format("$%.1f",total);
+        return String.format("$%.2f",total);
     }
 
     public static String getTotalOrders(){
