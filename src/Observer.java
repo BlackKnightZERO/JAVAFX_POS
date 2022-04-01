@@ -96,24 +96,31 @@ public class Observer {
         String filename = "storage/orders/"+LocalDate.now()+".txt";
 
         ObservableList<Item> observeOrders = FXCollections.observableArrayList();
-        
-        BufferedReader reader = new BufferedReader(new FileReader(filename));
 
         String singleLine;
 
         try {
+
+            File file = new File(filename);
+            if(!file.exists()){
+                file.createNewFile();
+            }
+            
+            BufferedReader reader = new BufferedReader(new FileReader(filename));
+            
             while( (singleLine = reader.readLine()) != null ) {
                 String [] parses = singleLine.split("#");
                 Item item = new Item(parses[1], parses[2], Double.parseDouble(parses[3]));
                 observeOrders.add(item);
             }
-        } catch(IOException ioe){
-            ioe.printStackTrace();
-        } finally {
+
             if(reader.readLine() == null) {
                 reader.close();
             }
-        }
+
+        } catch(IOException ioe){
+            ioe.printStackTrace();
+        } 
         
         return observeOrders;
 
