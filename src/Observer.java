@@ -130,4 +130,39 @@ public class Observer {
 
     }
 
+    public static ObservableList<OrderView> getObservableOrderViewList() throws IOException{
+
+        String filename = "storage/orders/"+LocalDate.now()+".txt";
+
+        ObservableList<OrderView> observeOrdersView = FXCollections.observableArrayList();
+
+        String singleLine;
+
+        try {
+
+            File file = new File(filename);
+            if(!file.exists()){
+                file.createNewFile();
+            }
+            
+            BufferedReader reader = new BufferedReader(new FileReader(filename));
+            
+            while( (singleLine = reader.readLine()) != null ) {
+                String [] parses = singleLine.split("#");
+                OrderView orderView = new OrderView(parses[0], parses[1], parses[2], Double.parseDouble(parses[3]));
+                observeOrdersView.add(orderView);
+            }
+
+            if(reader.readLine() == null) {
+                reader.close();
+            }
+
+        } catch(IOException ioe){
+            ioe.printStackTrace();
+        } 
+        
+        return observeOrdersView;
+
+    }
+
 }
