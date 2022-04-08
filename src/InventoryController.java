@@ -11,10 +11,35 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class InventoryController {
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
+
+import javafx.fxml.Initializable;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
+
+public class InventoryController implements Initializable {
+
+    private ObservableList<Item> itemList;
     private Stage stage;
     private Scene scene;
+
+    @FXML
+    private TableView<Item> tbData;
+
+    @FXML
+    private TableColumn<Item, String> item;
+
+    @FXML
+    private TableColumn<Item, String> price;
+
+    @FXML
+    private TableColumn<Item, Double> category;
+
 
     @FXML
     private Label errorCategory;
@@ -107,6 +132,20 @@ public class InventoryController {
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        item.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        category.setCellValueFactory(new PropertyValueFactory<>("Category"));
+        price.setCellValueFactory(new PropertyValueFactory<>("Price"));
+        // tbData.setItems(itemList);
+        try{
+            itemList = Observer.getObservableItemList();
+            tbData.setItems(itemList);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

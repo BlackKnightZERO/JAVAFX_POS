@@ -49,11 +49,11 @@
             </Label>
          </children>
       </HBox>
-      <TableView layoutX="309.0" layoutY="86.0" prefHeight="315.0" prefWidth="290.0">
+      <TableView fx:id="tbData" layoutX="309.0" layoutY="86.0" prefHeight="315.0" prefWidth="290.0">
         <columns>
-          <TableColumn prefWidth="106.4000244140625" text="Item" />
-          <TableColumn prefWidth="85.5999755859375" text="Category" />
-            <TableColumn prefWidth="95.20001220703125" text="Price" />
+          <TableColumn fx:id="item" prefWidth="106.4000244140625" text="Item" />
+          <TableColumn fx:id="category" prefWidth="85.5999755859375" text="Category" />
+            <TableColumn fx:id="price" prefWidth="95.20001220703125" text="Price" />
         </columns>
       </TableView>
       <TextField fx:id="inputName" layoutX="139.0" layoutY="164.0" prefHeight="26.0" prefWidth="160.0" />
