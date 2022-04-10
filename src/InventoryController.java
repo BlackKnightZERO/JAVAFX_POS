@@ -22,6 +22,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+
 public class InventoryController implements Initializable {
 
     private ObservableList<Item> itemList;
@@ -63,12 +66,59 @@ public class InventoryController implements Initializable {
     private Label inventoryMsg;
 
     @FXML
-    void handleAddItem(ActionEvent event) {
+    void handleAddItem(ActionEvent event) throws IOException {
+
+        if( !inputName.getText().isEmpty() ) {
+            if( !inputCategory.getText().isEmpty() ) {
+                if( !inputPrice.getText().isEmpty() ) {
+                    
+
+                    try {
+
+                        Item item= new Item( inputName.getText(), inputCategory.getText(), Double.parseDouble(inputPrice.getText()) );
+                    
+                        Observer.addItemToInventory(item);
+                        
+                        tbData.getItems().add(item);
+                
+                        inputName.clear();
+                        inputCategory.clear();
+                        inputPrice.clear();
+                    
+                    } catch ( NumberFormatException nex ) {
+                        errorPrice.setText("Input is Invalid");
+                        errorPrice.setTextFill(Color.RED);
+                        nex.printStackTrace();
+                    }  catch ( Exception ex ) {
+                        ex.printStackTrace();
+                    }
+
+
+                } else {
+                    this.showAlert("SPECIFY THE PRICE");
+                } 
+            } else {
+                this.showAlert("SPECIFY THE CATOGERY");
+            }
+        } else {
+            this.showAlert("SPECIFY THE ITEM");
+        }
 
     }
 
     @FXML
     void handleDeleteItem(ActionEvent event) {
+
+        int index = tbData.getSelectionModel().getSelectedIndex();
+
+        if( index > -1 ) {
+            try {
+                Observer.deleteItemFromInventory(index);
+                tbData.getItems().remove(index);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
 
     }
 
@@ -148,6 +198,14 @@ public class InventoryController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void showAlert(String errorMessage) {
+        Alert alert= new Alert(Alert.AlertType.NONE);
+        alert.setTitle("Error");
+        alert.setContentText(errorMessage);
+        alert.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+        alert.showAndWait();
     }
     
 }

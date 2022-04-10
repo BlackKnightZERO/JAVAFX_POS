@@ -59,11 +59,9 @@ public class HomeController implements Initializable {
     @FXML
     void placeOrder(ActionEvent event) throws IOException {
         
-        ObservableList<Item> singleItem = tbData.getSelectionModel().getSelectedItems();
-        
-        if(singleItem.size() > 0) {
+        if( tbData.getSelectionModel().getSelectedItem() != null ) {
 
-            orderItem   = singleItem.get(0);
+            orderItem   = tbData.getSelectionModel().getSelectedItem();
             Order order = new Order(orderItem);
             Observer.setCurrentOrder(order);
 

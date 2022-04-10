@@ -5,13 +5,16 @@ import java.time.LocalDate;
 
 public class Observer {
 
+    private static String inventoryDirectory = "storage/inventory/batch0001.txt";
+    private static String orderTodayDirectory = "storage/orders/"+LocalDate.now()+".txt";
+
     public static Order currentOrder;
 
     public static ObservableList<Item> getObservableItemList() throws IOException{
 
         ObservableList<Item> observeItem = FXCollections.observableArrayList();
         
-        BufferedReader reader = new BufferedReader(new FileReader("storage/inventory/batch0001.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader(inventoryDirectory));
 
         String singleLine;
 
@@ -62,14 +65,14 @@ public class Observer {
     public static void setCurrentOrder(Order order) {
 
         currentOrder = order;
-        System.out.println("Added");
+        System.out.println("Order placed");
         System.out.println("Current Order: "+currentOrder.generateString());
 
     }
 
     public static void updateOrderList() throws IOException{
         
-        String filename = "storage/orders/"+LocalDate.now()+".txt";
+        String filename = orderTodayDirectory;
 
         try {
 
@@ -87,7 +90,7 @@ public class Observer {
 
             pw.close();
 
-            System.out.println("List Updated");
+            System.out.println("Order List Updated");
 
         } catch(IOException ioe) {
             ioe.printStackTrace();
@@ -97,7 +100,7 @@ public class Observer {
 
     public static ObservableList<Item> getObservableOrderList() throws IOException{
 
-        String filename = "storage/orders/"+LocalDate.now()+".txt";
+        String filename = orderTodayDirectory;
 
         ObservableList<Item> observeOrders = FXCollections.observableArrayList();
 
@@ -132,7 +135,7 @@ public class Observer {
 
     public static ObservableList<OrderView> getObservableOrderViewList() throws IOException{
 
-        String filename = "storage/orders/"+LocalDate.now()+".txt";
+        String filename = orderTodayDirectory;
 
         ObservableList<OrderView> observeOrdersView = FXCollections.observableArrayList();
 
@@ -162,6 +165,70 @@ public class Observer {
         } 
         
         return observeOrdersView;
+
+    }
+
+    public static void addItemToInventory(Item item) throws IOException{
+        
+        String filename = inventoryDirectory;
+
+        try {
+
+            File file = new File(filename);
+
+            if(!file.exists()){
+                file.createNewFile();
+            }
+
+            FileWriter fw       = new FileWriter(file,true);
+            BufferedWriter bw   = new BufferedWriter(fw);
+            PrintWriter pw      = new PrintWriter(bw);
+
+            pw.println(item.generateString());    
+
+            pw.close();
+
+            System.out.println("Inventory List Updated");
+
+        } catch(IOException ioe) {
+            ioe.printStackTrace();
+        } 
+        
+    }
+
+    public static void deleteItemFromInventory(int index) throws IOException{
+
+        String filename = inventoryDirectory;
+
+        ObservableList<Item> inventoryList = getObservableItemList();
+
+        try {
+
+            File file = new File(filename);
+
+            if ( file.exists() ) {
+                inventoryList.remove(index);
+
+                BufferedWriter writer = new BufferedWriter(new FileWriter(inventoryDirectory));
+
+                for(Item item : inventoryList) {
+                    writer.write(item.generateString()+"\n");
+                }
+
+                writer.close();
+
+                System.out.println("Inventory List Updated");
+
+            } else {
+                throw new IOException("File Not Found!");
+            }   
+
+        } catch(IOException ioe) {
+            ioe.getMessage();
+            ioe.printStackTrace();
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        }
 
     }
 
