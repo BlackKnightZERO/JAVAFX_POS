@@ -113,8 +113,10 @@ public class InventoryController implements Initializable {
 
         if( index > -1 ) {
             try {
-                Observer.deleteItemFromInventory(index);
-                tbData.getItems().remove(index);
+                if( this.showConfirm("Are you sure ?") ) {
+                    Observer.deleteItemFromInventory(index);
+                    tbData.getItems().remove(index);
+                }
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -206,6 +208,23 @@ public class InventoryController implements Initializable {
         alert.setContentText(errorMessage);
         alert.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
         alert.showAndWait();
+    }
+
+    private boolean showConfirm(String confirmMessage) {
+        Alert alert= new Alert(Alert.AlertType.NONE);
+        alert.setTitle("Confirm");
+        alert.setContentText(confirmMessage);
+        alert.getDialogPane().getButtonTypes().add(ButtonType.OK);
+        alert.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+        alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.OK) {
+            return true;
+        } else {
+            return false;
+        }
+
+
     }
     
 }
