@@ -68,6 +68,8 @@ public class InventoryController implements Initializable {
     @FXML
     void handleAddItem(ActionEvent event) throws IOException {
 
+        inventoryMsg.setText("");
+
         if( !inputName.getText().isEmpty() ) {
             if( !inputCategory.getText().isEmpty() ) {
                 if( !inputPrice.getText().isEmpty() ) {
@@ -81,14 +83,15 @@ public class InventoryController implements Initializable {
                         
                         tbData.getItems().add(item);
                 
-                        inputName.clear();
-                        inputCategory.clear();
-                        inputPrice.clear();
+                        this.clearForm();
+
+                        inventoryMsg.setText("Added Successfully");
+                        inventoryMsg.setTextFill(Color.BLUE);
                     
                     } catch ( NumberFormatException nex ) {
                         errorPrice.setText("Input is Invalid");
                         errorPrice.setTextFill(Color.RED);
-                        nex.printStackTrace();
+                        // nex.printStackTrace();
                     }  catch ( Exception ex ) {
                         ex.printStackTrace();
                     }
@@ -111,11 +114,15 @@ public class InventoryController implements Initializable {
 
         int index = tbData.getSelectionModel().getSelectedIndex();
 
+        inventoryMsg.setText("");
+
         if( index > -1 ) {
             try {
                 if( this.showConfirm("Are you sure ?") ) {
                     Observer.deleteItemFromInventory(index);
                     tbData.getItems().remove(index);
+                    inventoryMsg.setText("Deleted Successfully");
+                    inventoryMsg.setTextFill(Color.BLUE);
                 }
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -212,7 +219,7 @@ public class InventoryController implements Initializable {
 
     private boolean showConfirm(String confirmMessage) {
         Alert alert= new Alert(Alert.AlertType.NONE);
-        alert.setTitle("Confirm");
+        alert.setTitle("Confirm Operation");
         alert.setContentText(confirmMessage);
         alert.getDialogPane().getButtonTypes().add(ButtonType.OK);
         alert.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
@@ -225,6 +232,16 @@ public class InventoryController implements Initializable {
         }
 
 
+    }
+
+    private void clearForm() {
+        inputName.clear();
+        inputCategory.clear();
+        inputPrice.clear();
+
+        errorName.setText("");
+        errorCategory.setText("");
+        errorPrice.setText("");
     }
     
 }
