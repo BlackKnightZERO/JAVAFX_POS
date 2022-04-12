@@ -6,7 +6,7 @@ import java.time.LocalDate;
 public class Observer {
 
     private static final String inventoryDirectory = "storage/inventory/batch0001.txt";
-    private static final String orderTodayDirectory = "storage/orders/"+LocalDate.now()+".txt";
+    private static String orderTodayDirectory = "storage/orders/"+LocalDate.now()+".txt";
 
     public static Order currentOrder;
 
